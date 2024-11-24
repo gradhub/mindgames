@@ -1,0 +1,15 @@
+.button_text {
+  font-weight: 600px;
+  font-size: 24px;
+  color: #3A4A58;
+}
+
+.main_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100vh;
+    height: 100dvh;
+}
