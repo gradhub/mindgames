@@ -15,14 +15,14 @@ export const isEndGame = (field: string[]) => {
 
 const isFieldFilled = (field: string[]) => {
     for(let square of field){
-        if(square == '') return false
+        if(square === '') return false
     }
     return true
 }
 
 export const whoIsWin = (field: string[]) => {
     for(let combination of winningCombinations){
-        if(field[combination[0]] != '' && field[combination[0]] == field[combination[1]] && field[combination[1]] == field[combination[2]]) {
+        if(field[combination[0]] !== '' && field[combination[0]] === field[combination[1]] && field[combination[1]] === field[combination[2]]) {
             return field[combination[0]]
         }
     }

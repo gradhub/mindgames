@@ -3,6 +3,7 @@ import Square from './Square'
 import s from './field.module.css'
 import { useTikTakToeMove } from "../../stores/TikTakToeStore/useTikTakToeMove"
 import { isEndGame, whoIsWin } from "../../utils/tikTakToeWin.utils"
+import { useEffect } from "react"
 
 const Field = () => {
     const { squares, setSquare, isSquareEmpty } = useTikTakToeField()
@@ -10,12 +11,17 @@ const Field = () => {
 
 
     const onClickSquareHandler = (index: number) => {
-        if(isSquareEmpty(index)) {
+        if(isSquareEmpty(index) && !isEndGame(squares)) {
             setSquare(whoseMove, index)
             changeWhoseMove()
-            if(isEndGame(squares)) console.log(whoIsWin(squares))
         }
     }
+
+    useEffect(() => {
+        if (isEndGame(squares)) {
+            console.log(whoIsWin(squares));
+        }
+    }, [squares]);
 
     return (
         <div className={s.field}>
