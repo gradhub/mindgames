@@ -1,4 +1,4 @@
-import s from './sudoku.module.css'
+//import s from './sudoku.module.css'
 
 const Sudoku = () => {
     return (
