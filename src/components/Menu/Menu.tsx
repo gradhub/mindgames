@@ -1,5 +1,5 @@
 import s from './menu.module.css'
-import Button from '../Buttons/Button';
+import Button from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
@@ -14,9 +14,10 @@ const Menu = () => {
     }
 
     return(
-        <div className={s.main_menu}>
+        <div className={s.mainMenu}>
             <h1>Список игр</h1>
             <Button 
+                className={s.mainMenuButton}
                 label='Крестики - Нолики'
                 variable = 'major'
                 onClick = {onTikTakToeHandler}
@@ -25,6 +26,7 @@ const Menu = () => {
                 label='Судоку'
                 variable = 'major'
                 onClick = {onSudokuHandler}
+                className={s.mainMenuButton}
             />
         </div>
     )

@@ -1,13 +1,11 @@
-
 .major {
-    width: 500px;
-    height: 50px;
+    border: none;
     border-radius: 50px;
     background-color: #B3C5C9;
-    border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px 20px;
 }
   
 .major:hover {
@@ -16,5 +14,28 @@
 
 .major:active {
     transform: scale(0.95);
+}
+
+.minor {
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 8px #cccccc, -4px -4px 8px #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; 
+    padding: 10px 20px;
+}
+  
+.minor:active {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: inset 4px 4px 8px #cccccc, inset -4px -4px 8px #ffffff;
+}
+  
+.minor:hover {
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    color: #444;
 }
   

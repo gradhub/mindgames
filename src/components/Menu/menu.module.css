@@ -4,7 +4,7 @@
   color: #3A4A58;
 }
 
-.main_menu {
+.mainMenu {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,4 +12,8 @@
     gap: 20px;
     height: 100vh;
     height: 100dvh;
+}
+
+.mainMenuButton{
+  width: 500px;
 }

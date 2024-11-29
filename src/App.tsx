@@ -1,13 +1,17 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Menu from './components/Menu/Menu'
-import TikTakToe from './components/TikTakToe/TikTakToe';
-import Sudoku from './components/Sudoku/Sudoku';
+import Menu from './components/menu/Menu'
+import TikTakToe from './components/tikTakToe/TikTakToe';
+import Sudoku from './components/sudoku/Sudoku';
+import ModalComponent from './components/modal/ModalComponent';
+
 
 function App() {
 
   return (
     <BrowserRouter>
+      <ModalComponent />
+      
       <Routes>
         <Route path="/" element={<Menu />} />
         <Route path="/tik-tak-toe" element={<TikTakToe />} />

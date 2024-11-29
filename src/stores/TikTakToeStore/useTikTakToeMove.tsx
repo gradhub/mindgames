@@ -1,30 +1,23 @@
 import { create } from 'zustand';
 
-type XO = 'x' | 'o'
-
-const getStartMoveArray = () => {
-  const tikTakToe3x3Field = [0,1,2,3,4,5,6,7,8,9]
-  return tikTakToe3x3Field
-}
+export type XO = 'x' | 'o'
 
 type Variables = {
   whoseMoveInStore: XO,
-  tikTakToeMoveField: number[],
-  tikTakToeMoveFieldExcluding: number[],
 }
 
 type Actions = {
   setWhoseMoveInStore: (value: XO) => void,
   changeWhoseMoveInStore: () => void,
-  getTikTakToeMoveField: () => number[],
-  setTikTakToeMoveField: (array: number[]) => void,
-  addInTikTakToeMoveFieldExcluding: (value: number) => void,
+  resetWhoseMoveInStore: () => void,
 }
 
-export const useTikTakToeMove = create<Variables & Actions>((set, get) => ({
-  whoseMoveInStore: 'x',
-  tikTakToeMoveField: getStartMoveArray(),
-  tikTakToeMoveFieldExcluding: [],
+const getDefaultWhoseMoveInStore = (): XO => {
+  return 'x'
+}
+
+export const useTikTakToeMove = create<Variables & Actions>((set) => ({
+  whoseMoveInStore: getDefaultWhoseMoveInStore(),
   setWhoseMoveInStore: (value: XO) =>
     set(() => ({
       whoseMoveInStore: value
@@ -33,15 +26,8 @@ export const useTikTakToeMove = create<Variables & Actions>((set, get) => ({
     set((state) => ({
       whoseMoveInStore: state.whoseMoveInStore === 'x' ? 'o' : 'x'
     })),
-  getTikTakToeMoveField: () => {
-    return get().tikTakToeMoveField
-  },
-  setTikTakToeMoveField: (array: number[]) =>
-    set(() => ({
-      tikTakToeMoveField: array
-    })),
-  addInTikTakToeMoveFieldExcluding: (value: number) =>
+  resetWhoseMoveInStore: () =>
     set((state) => ({
-      tikTakToeMoveFieldExcluding: [...state.tikTakToeMoveFieldExcluding, value]
+      whoseMoveInStore: getDefaultWhoseMoveInStore()
     })),
 }));

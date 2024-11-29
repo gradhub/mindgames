@@ -1,46 +1,61 @@
 import { useTikTakToeField } from "../../stores/TikTakToeStore/useTikTakToeField"
-import Square from './Square'
+import Square from "./Square"
 import s from './field.module.css'
 import { useTikTakToeMove } from "../../stores/TikTakToeStore/useTikTakToeMove"
 import { isEndGame, whoIsWin } from "../../utils/tikTakToeWin.utils"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useComputerPlayerHook } from "../../hooks/ComputerPlayer"
+import Button from "../buttons/Button"
+import { useModalStore } from "../../stores/useModalStore"
+import { EndTikTakToeGameModal } from "../modal/modalContents/EndTikTakToeGameModal"
 
 const Field = () => {
-    const { squares, setSquare, isSquareEmpty } = useTikTakToeField()
-    const { changeWhoseMoveInStore, whoseMoveInStore, tikTakToeMoveField } = useTikTakToeMove()
-    const arrayInexInFieldComputerPlayerMove = useComputerPlayerHook()
-    const addInTikTakToeMoveFieldExcluding = useTikTakToeMove((s) => s.addInTikTakToeMoveFieldExcluding)
-    const [whoseMove, setWhoseMove] = useState(whoseMoveInStore)
+    const { squaresInStore, setSquaresInStore, isSquareEmpty, resetSquares,
+        addInTikTakToeMoveFieldExcluding, resetTikTakToeMoveFieldExcluding } = useTikTakToeField()
+    const { whoseMoveInStore, changeWhoseMoveInStore, resetWhoseMoveInStore } = useTikTakToeMove()
+    const computerPlayerMove = useComputerPlayerHook()
+    const { openModal, closeModal } = useModalStore()
 
-    const changeWhoseMove = () => {
-        setWhoseMove(whoseMove === 'x' ? 'o' : 'x')
+    const onClickRestartGeme = () => {
+        resetSquares()
+        resetTikTakToeMoveFieldExcluding()
+        resetWhoseMoveInStore()
+        closeModal()
     }
 
-    const onClickSquareHandler = (index: number) => {
-        if(isSquareEmpty(index) && !isEndGame(squares)) {
-            setSquare(whoseMove, index)
+    const onClickSquare = (index: number) => {
+        if(isSquareEmpty(index) && !isEndGame(squaresInStore)) {
+            setSquaresInStore(index, whoseMoveInStore)
             addInTikTakToeMoveFieldExcluding(index)
-            changeWhoseMove()
-            const computerMoveIndex = arrayInexInFieldComputerPlayerMove(tikTakToeMoveField)
-            console.log('computerMoveIndex',computerMoveIndex)
-            setSquare(whoseMove, computerMoveIndex)
-            addInTikTakToeMoveFieldExcluding(computerMoveIndex)
-            changeWhoseMove()
+            changeWhoseMoveInStore()
         }
+    }
+
+    const openEndGameModal = () => {
+        openModal('endGameModal', (<EndTikTakToeGameModal onClickRestartGeme={onClickRestartGeme}/>))
     }
 
     useEffect(() => {
-        if (isEndGame(squares)) {
-            console.log(whoIsWin(squares));
+        if (!isEndGame(squaresInStore)) {
+            computerPlayerMove()
+        }else{
+            openEndGameModal()
         }
-    }, [squares]);
+    }, [squaresInStore]);
 
     return (
-        <div className={s.field}>
-            {squares.map((square, index) => (
-                <Square key={index} index={index} value={square} onClick={onClickSquareHandler}/>
-            ))}
+        <div className={s.fieldAndButton}>
+            <div className={s.field}>
+                {squaresInStore.map((square, index) => (
+                    <Square key={index} index={index} value={square} onClick={onClickSquare}/>
+                ))}
+            </div>
+            <Button
+                className={s.restartButton}
+                label="Начать заново"
+                variable="minor"
+                onClick={onClickRestartGeme}
+            />
         </div>
     )
 }

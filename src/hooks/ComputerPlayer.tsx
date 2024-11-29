@@ -1,22 +1,32 @@
 import random from "random";
+import { useTikTakToeField } from "../stores/TikTakToeStore/useTikTakToeField";
 import { useTikTakToeMove } from "../stores/TikTakToeStore/useTikTakToeMove";
 
 export const useComputerPlayerHook = () => {
-    const excludingArray = useTikTakToeMove((s) => s.tikTakToeMoveFieldExcluding)
-    const addInTikTakToeMoveFieldExcluding = useTikTakToeMove((s) => s.addInTikTakToeMoveFieldExcluding)
+    const { squaresInStore, setSquaresInStore, 
+        tikTakToeMoveFieldExcluding, addInTikTakToeMoveFieldExcluding } = useTikTakToeField()
+    const { whoseMoveInStore, changeWhoseMoveInStore } = useTikTakToeMove()
 
-    const getRandomIndexExcluding = (min: number, max: number, exclude: number[]) => {
+    const getRandomIndexWithExcluding = (min: number, max: number, exclude: number[]) => {
         const numbers = Array.from({ length: max - min + 1 }, (_, i) => i + min)
         const filteredNumbers = numbers.filter((num) => !exclude.includes(num))
         const randomIndex = random.int(0, filteredNumbers.length - 1)
         return filteredNumbers[randomIndex]
-      };
+      }
 
-    const arrayInexInFieldComputerPlayerMove = (tikTakToeMoveField: number[]) => {
-        const index = getRandomIndexExcluding(tikTakToeMoveField[0], tikTakToeMoveField[tikTakToeMoveField.length - 1], excludingArray)
-        addInTikTakToeMoveFieldExcluding(index)
+    const arrayInexInFieldComputerPlayerMove = (max: number, excludingArray: number[]) => {
+        const index = getRandomIndexWithExcluding(0, max, excludingArray)
         return index
     }
 
-    return arrayInexInFieldComputerPlayerMove
+    const computerPlayerMove = () => {
+        if( whoseMoveInStore === 'o'){
+            const index = arrayInexInFieldComputerPlayerMove(squaresInStore.length - 1, tikTakToeMoveFieldExcluding)
+            setSquaresInStore(index, whoseMoveInStore)
+            addInTikTakToeMoveFieldExcluding(index)
+            changeWhoseMoveInStore()
+        }
+    }
+
+    return computerPlayerMove
 }
