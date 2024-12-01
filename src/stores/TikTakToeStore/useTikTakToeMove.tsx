@@ -1,24 +1,33 @@
 import { create } from 'zustand';
 
-type XO = 'x' | 'o'
+export type XO = 'x' | 'o'
 
 type Variables = {
-  whoseMove: XO,
+  whoseMoveInStore: XO,
 }
 
 type Actions = {
-  setWhoseMove: (value: XO) => void,
-  changeWhoseMove: () => void,
+  setWhoseMoveInStore: (value: XO) => void,
+  changeWhoseMoveInStore: () => void,
+  resetWhoseMoveInStore: () => void,
+}
+
+const getDefaultWhoseMoveInStore = (): XO => {
+  return 'x'
 }
 
 export const useTikTakToeMove = create<Variables & Actions>((set) => ({
-  whoseMove: 'x',
-  setWhoseMove: (value: XO) =>
+  whoseMoveInStore: getDefaultWhoseMoveInStore(),
+  setWhoseMoveInStore: (value: XO) =>
     set(() => ({
-      whoseMove: value
+      whoseMoveInStore: value
     })),
-  changeWhoseMove: () =>
+  changeWhoseMoveInStore: () =>
     set((state) => ({
-      whoseMove: state.whoseMove === 'x' ? 'o' : 'x'
+      whoseMoveInStore: state.whoseMoveInStore === 'x' ? 'o' : 'x'
+    })),
+  resetWhoseMoveInStore: () =>
+    set((state) => ({
+      whoseMoveInStore: getDefaultWhoseMoveInStore()
     })),
 }));

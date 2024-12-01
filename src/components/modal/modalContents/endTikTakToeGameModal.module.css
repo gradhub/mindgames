@@ -1,0 +1,10 @@
+.modalButtonGroup{
+    display: flex;
+    gap: 20px;
+    margin: 10px auto 0px;
+}
+
+.modalBody{
+    display: flex;
+    flex-direction: column;
+}

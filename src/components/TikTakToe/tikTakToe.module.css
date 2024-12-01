@@ -1,1 +1,13 @@
-
+.body{
+    display: flex;
+    flex-direction: column;
+}
+.svgButton{
+    width: 40px;
+    height: 40px;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

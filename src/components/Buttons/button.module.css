@@ -1,13 +1,28 @@
+.button{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.button svg:hover {
+    box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; /* Вдавливание */
+    background: #e3e4e8; /* Немного затемнённый фон */
+  }
+  
+  .button svg:active {
+    box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff; /* Более глубокое вдавливание */
+    background: #d1d9e6; /* Более тёмный фон */
+  }
 
 .major {
-    width: 500px;
-    height: 50px;
     border-radius: 50px;
     background-color: #B3C5C9;
-    border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4d4d4d;
     transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px 20px;
 }
   
 .major:hover {
@@ -16,5 +31,26 @@
 
 .major:active {
     transform: scale(0.95);
+}
+
+.minor {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 8px #cccccc, -4px -4px 8px #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    transition: all 0.2s ease-in-out; 
+    padding: 10px 20px;
+}
+  
+.minor:active {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: inset 4px 4px 8px #cccccc, inset -4px -4px 8px #ffffff;
+}
+  
+.minor:hover {
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    color: #444;
 }
   

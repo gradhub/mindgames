@@ -1,0 +1,30 @@
+.field {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    background: linear-gradient(145deg, #BFD4DC, #CFE3E9);
+    border-radius: 20px;
+    padding: 12px 10px 10px 12px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.7);
+}
+.restartButton{
+  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fieldAndButton{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.gameBody{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 auto;
+}
+.gameTitle{
+  text-align: center;
+}

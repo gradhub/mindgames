@@ -1,26 +1,42 @@
 import { create } from 'zustand';
+import { numberOfSquareInGame } from '../../constants/gameField';
 
 type Field = {
-  squares: string[]
-  setSquare: (value: string, index: number) => void
-  resetSquares: () => void
-  isSquareEmpty: (index: number) => boolean
+  squaresInStore: string[]
+  tikTakToeMoveFieldExcluding: number[],
 }
 
-export const useTikTakToeField = create<Field>((set, get) => ({
-  squares: Array(9).fill(''),
-  setSquare: (value: string, index: number) =>
+type Action = {
+  setSquaresInStore: (index: number, value: string) => void
+  resetSquares: () => void
+  isSquareEmpty: (index: number) => boolean
+  addInTikTakToeMoveFieldExcluding: (value: number) => void,
+  resetTikTakToeMoveFieldExcluding: () => void
+}
+
+export const useTikTakToeField = create<Field & Action>((set, get) => ({
+  squaresInStore: Array(numberOfSquareInGame).fill(''),
+  tikTakToeMoveFieldExcluding: [],
+  setSquaresInStore: (index: number, value: string) =>
     set((state: any) => ({
-      squares: state.squares.map((square: string, i: number) =>
+      squaresInStore: state.squaresInStore.map((square: string, i: number) =>
         i === index ? value : square
       )
     })),
   isSquareEmpty: (index: number) => {
-    const { squares } = get()
-    return squares[index] === ''
+    const { squaresInStore } = get()
+    return squaresInStore[index] === ''
   },
   resetSquares: () =>
     set(() => ({
-      squares: Array(9).fill('')
+      squaresInStore: Array(numberOfSquareInGame).fill('')
+    })),
+  addInTikTakToeMoveFieldExcluding: (value: number) =>
+    set((state) => ({
+      tikTakToeMoveFieldExcluding: [...state.tikTakToeMoveFieldExcluding, value]
+    })),
+  resetTikTakToeMoveFieldExcluding: () =>
+    set(() => ({
+      tikTakToeMoveFieldExcluding: []
     })),
 }));
