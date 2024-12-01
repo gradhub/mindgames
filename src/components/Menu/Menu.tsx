@@ -1,16 +1,17 @@
 import s from './menu.module.css'
 import Button from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
+import { TIK_TAK_TOE_GAME_PATH, SUDOKU_GAME_PATH } from '../../constants/routerPath';
 
 const Menu = () => {
     const navigate = useNavigate()
 
     const onTikTakToeHandler = () => {
-        navigate('tik-tak-toe')
+        navigate(TIK_TAK_TOE_GAME_PATH)
     }
 
     const onSudokuHandler = () => {
-        navigate('sudoku')
+        navigate(SUDOKU_GAME_PATH)
     }
 
     return(

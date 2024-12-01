@@ -1,0 +1,50 @@
+.settingsTitle{
+  text-align: center;
+}
+
+.settingBlock{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.settingBody {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.settingLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  background: #f5f6fa;
+  border-radius: 15px;
+  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+  color: #3c3c3c;
+  transition: all 0.3s ease, transform 0.2s ease;
+}
+
+.settingLabel:hover {
+  background: #e3e4e8;
+  box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+  transform: translateY(-2px);
+}
+
+input[type="radio"]:checked + .settingLabel {
+  background: #d1d9e6;
+  color: #ffffff;
+  box-shadow: inset 6px 6px 12px #b0b7c3, inset -6px -6px 12px #ffffff;
+  transform: scale(1.05);
+}

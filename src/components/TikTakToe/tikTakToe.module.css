@@ -1,8 +1,13 @@
-.gameBody{
+.body{
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
-.gameTitle{
-    text-align: center;
+.svgButton{
+    width: 40px;
+    height: 40px;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

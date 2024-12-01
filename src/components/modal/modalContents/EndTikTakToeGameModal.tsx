@@ -1,6 +1,7 @@
 import { whoIsWin } from "../../../utils/tikTakToeWin.utils"
 import { useTikTakToeField } from "../../../stores/TikTakToeStore/useTikTakToeField"
 import Button from "../../buttons/Button"
+import s from './endTikTakToeGameModal.module.css'
 
 const whoseWinnerText = {
     "player": "Поздравляем! Вы одержали победу.",
@@ -10,10 +11,11 @@ const whoseWinnerText = {
 
 interface EndTikTakToeGameModalProps {
     onClickRestartGeme: () => void
+    onClickExitInMenu: () => void
 }
 
 export const EndTikTakToeGameModal: React.FC<EndTikTakToeGameModalProps> = (props) => {
-    const { onClickRestartGeme } = props
+    const { onClickRestartGeme, onClickExitInMenu } = props
     const squares = useTikTakToeField((s) => s.squaresInStore)
 
     const getWinnerText = () => {
@@ -30,14 +32,21 @@ export const EndTikTakToeGameModal: React.FC<EndTikTakToeGameModalProps> = (prop
     }
 
     return (
-        <div>
+        <div className={s.modalBody}>
             <h2>Игра окончена</h2>
             <p>{getWinnerText()}</p>
-            <Button
-                label="Начать сначала"
-                variable="major"
-                onClick={onClickEndGame}
-            />
+            <div className={s.modalButtonGroup}>
+                <Button
+                    label="Вернуться в меню"
+                    variable="major"
+                    onClick={onClickExitInMenu}
+                />
+                <Button
+                    label="Начать сначала"
+                    variable="major"
+                    onClick={onClickEndGame}
+                />
+            </div>
         </div>
     )
 }
