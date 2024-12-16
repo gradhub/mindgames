@@ -7,7 +7,7 @@ import { whoIsWin } from "../utils/tikTakToeWin.utils";
 export const useComputerPlayerHook = () => {
     const { squaresInStore, setSquaresInStore, 
         tikTakToeMoveFieldExcluding, addInTikTakToeMoveFieldExcluding } = useTikTakToeField()
-    const { whoseMoveInStore, changeWhoseMoveInStore } = useTikTakToeMove()
+    const { playerSymbol, computerSymbol, whoseMoveInStore, changeWhoseMoveInStore } = useTikTakToeMove()
     const { gameDifficulty } = useTikTakToeSettings()
 
     const getRandomIndexWithExcluding = (min: number, max: number, exclude: number[]) => {
@@ -30,14 +30,14 @@ export const useComputerPlayerHook = () => {
             case "medium":
               return getRandomIndexWithExcluding(0, max, excludingArray)
             case "hard":
-              return getSmartIndex(squaresInStore, 'o', 'x')
+              return getSmartIndex(squaresInStore, computerSymbol, playerSymbol)
             default:
               return getRandomIndexWithExcluding(0, max, excludingArray)
         }
     }
 
     const computerPlayerMove = () => {
-        if( whoseMoveInStore === 'o'){
+        if( whoseMoveInStore === computerSymbol){
             const index = arrayInexInFieldComputerPlayerMove(squaresInStore.length - 1, tikTakToeMoveFieldExcluding)
             setSquaresInStore(index, whoseMoveInStore)
             addInTikTakToeMoveFieldExcluding(index)

@@ -2,6 +2,7 @@ import { whoIsWin } from "../../../utils/tikTakToeWin.utils"
 import { useTikTakToeField } from "../../../stores/TikTakToeStore/useTikTakToeField"
 import Button from "../../buttons/Button"
 import s from './endTikTakToeGameModal.module.css'
+import { useTikTakToeMove } from "../../../stores/TikTakToeStore/useTikTakToeMove"
 
 const whoseWinnerText = {
     "player": "Поздравляем! Вы одержали победу.",
@@ -15,13 +16,14 @@ interface EndTikTakToeGameModalProps {
 }
 
 export const EndTikTakToeGameModal: React.FC<EndTikTakToeGameModalProps> = (props) => {
+    const { playerSymbol } = useTikTakToeMove()
     const { onClickRestartGeme, onClickExitInMenu } = props
     const squares = useTikTakToeField((s) => s.squaresInStore)
 
     const getWinnerText = () => {
         const winner = whoIsWin(squares)
         if (winner){
-            return winner === 'x' ? whoseWinnerText.player : whoseWinnerText.computerPlayer
+            return winner === playerSymbol ? whoseWinnerText.player : whoseWinnerText.computerPlayer
         }else{
             return whoseWinnerText.drawText
         }

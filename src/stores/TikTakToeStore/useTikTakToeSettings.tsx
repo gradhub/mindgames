@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { XO } from './useTikTakToeMove';
 
 export type difficulty = 'easy' | 'medium' | 'hard'
 
@@ -7,7 +8,7 @@ type Variable = {
 }
 
 type Action = {
-    setGameDifficulty: (value: difficulty) => void
+    setGameDifficulty: (value: difficulty) => void,
 }
 
 export const useTikTakToeSettings = create<Variable & Action>((set) => ({
