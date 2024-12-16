@@ -1,4 +1,6 @@
 import s from './square.module.css'
+import { ReactComponent as CrossGame} from './crossGame.svg'
+import { ReactComponent as ZeroGame} from './zeroGame.svg'
 
 interface SquareProps {
     index: number,
@@ -13,7 +15,12 @@ const Square: React.FC<SquareProps> = (props) => {
             className={s.square}
             onClick={() => onClick(index)}
         >
-            {value}
+            {value === 'x' && (
+                <CrossGame />
+            )}
+            {value === 'o' && (
+                <ZeroGame />
+            )}
         </div>
     )
 }

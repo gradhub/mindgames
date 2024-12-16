@@ -1,3 +1,24 @@
+.gameSymbol svg {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
+  border-radius: 10px;
+  background: #f5f6fa;
+}
+
+.gameSymbol svg:hover {
+  transform: scale(1.2);
+  box-shadow: 4px 4px 8px #b0b7c3, -4px -4px 8px #ffffff;
+  background: #f5f6fa;
+}
+
+.gameSymbol.active {
+  transform: scale(1.1);
+}
+
+
 .settingsTitle{
   text-align: center;
 }
@@ -5,7 +26,6 @@
 .settingBlock{
   display: flex;
   gap: 20px;
-  justify-content: center;
   align-items: center;
 }
 

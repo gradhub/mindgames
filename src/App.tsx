@@ -5,7 +5,7 @@
   import Sudoku from './components/sudoku/Sudoku';
   import ModalComponent from './components/modal/ModalComponent';
   import TikTakToeGame from './components/tikTakToe/TikTakToeGame';
-  import TikTakToeSettings from './components/tikTakToe/TikTakToeSettings';
+  import TikTakToeSettings from './components/tikTakToe/Settings/TikTakToeSettings';
 
   function App() {
 

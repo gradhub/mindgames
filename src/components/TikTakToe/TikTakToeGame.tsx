@@ -13,9 +13,9 @@ import { useTikTakToeHook } from '../../hooks/useTikTakToeHook'
 import { MIND_GAME_MENU } from "../../constants/routerPath"
 
 const TikTakToeGame = () => {
-    const { squaresInStore, setSquaresInStore, isSquareEmpty, resetSquares,
-        addInTikTakToeMoveFieldExcluding, resetTikTakToeMoveFieldExcluding } = useTikTakToeField()
-    const { whoseMoveInStore, changeWhoseMoveInStore, resetWhoseMoveInStore } = useTikTakToeMove()
+    const { squaresInStore, setSquaresInStore, isSquareEmpty,
+        addInTikTakToeMoveFieldExcluding } = useTikTakToeField()
+    const { playerSymbol, changeWhoseMoveInStore } = useTikTakToeMove()
     const computerPlayerMove = useComputerPlayerHook()
     const { openModal, closeModal } = useModalStore()
     const resetTikTakToeStores = useTikTakToeHook()
@@ -34,7 +34,7 @@ const TikTakToeGame = () => {
 
     const onClickSquare = (index: number) => {
         if(isSquareEmpty(index) && !isEndGame(squaresInStore)) {
-            setSquaresInStore(index, whoseMoveInStore)
+            setSquaresInStore(index, playerSymbol)
             addInTikTakToeMoveFieldExcluding(index)
             changeWhoseMoveInStore()
         }
@@ -62,7 +62,7 @@ const TikTakToeGame = () => {
                     {squaresInStore.map((square, index) => (
                         <Square key={index} index={index} value={square} onClick={onClickSquare}/>
                     ))}
-                </div>
+                </div>                                
                 <Button
                     className={s.restartButton}
                     label="Начать заново"
